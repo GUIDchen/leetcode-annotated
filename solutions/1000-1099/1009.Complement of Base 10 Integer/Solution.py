@@ -1,0 +1,13 @@
+# 题目：1009. 十进制整数的反码（Complement of Base 10 Integer）
+# 核心思路：逐位取反并按位号拼接成新整数
+# 复杂度：时间 O(log n)，按二进制位数迭代；空间 O(1)
+class Solution:  # LeetCode 约定的题解类
+    def bitwiseComplement(self, n: int) -> int:  # n：非负整数，求它二进制表示的反码（不含前导 0）
+        if n == 0:  # 特判 0：它的有效二进制位只有一位 0
+            return 1  # 按定义 0 的反码是 1
+        ans = i = 0  # ans：逐位拼出的反码；i：当前要填的位号
+        while n:  # 逐位处理 n 的二进制表示
+            ans |= (n & 1 ^ 1) << i  # 取出最低位并取反（& 优先于 ^），左移 i 位后并入答案
+            i += 1  # 位号加一，准备处理更高位
+            n >>= 1  # 右移一位，下一轮处理更高的位
+        return ans  # 返回反码结果

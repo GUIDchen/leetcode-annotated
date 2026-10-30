@@ -1,0 +1,11 @@
+# 题目：3523. 非递减数组的最大长度（Make Array Non-decreasing）
+# 思路：一次贪心扫描。能被单独保留的元素，必须不小于它前面所有元素的最大值；统计这种「记录值」的个数即最大长度。
+# 时间复杂度：O(n)，只需遍历一遍；空间复杂度：O(1)，只用两个变量。
+class Solution:  # LeetCode 约定的题解类
+    def maximumPossibleSize(self, nums: List[int]) -> int:  # nums 为输入数组，返回合并后非递减数组的最大长度
+        ans = mx = 0  # ans 记录可保留的元素个数，mx 是当前已保留序列中的最大值
+        for x in nums:  # 从左到右遍历原数组
+            if mx <= x:  # 当前元素不小于已保留的最大值，可以原样接在后面
+                ans += 1  # 该元素可以被保留，长度加一
+                mx = x  # 更新已保留序列的最大值
+        return ans  # ans 就是非递减数组的最大长度

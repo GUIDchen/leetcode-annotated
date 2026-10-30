@@ -1,0 +1,6 @@
+# 3870. 统计范围内的逗号 / Count Commas in Range
+# 核心思路：人类书写格式中只有 ≥ 1000 的数才含 1 个逗号，而本题范围内每个数最多 1 个逗号，故 1..n 中带逗号的数恰有 max(0, n - 999) 个。
+# 复杂度：时间复杂度 O(1)，空间复杂度 O(1)。
+class Solution:  # LeetCode 题解类
+    def countCommas(self, n: int) -> int:  # 返回把 1..n 全部写成十进制后逗号的总数
+        return max(0, n - 999)  # 1000..n 共 n-999 个数，每个贡献 1 个逗号；n < 1000 时为 0

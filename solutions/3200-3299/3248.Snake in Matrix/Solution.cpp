@@ -1,0 +1,18 @@
+// 题目：3248. 矩阵中的蛇（Snake in Matrix）
+// 思路：从 (0,0) 出发逐条模拟移动命令，维护行列坐标，最后按 row * n + col 换算成一维编号。
+// 时间复杂度：O(m)，m 为命令条数；空间复杂度：O(1)，只用了行列两个变量。
+class Solution {  // // LeetCode 约定的题解类
+public:  // // 题解方法对外可见
+    int finalPositionOfSnake(int n, vector<string>& commands) {  // // n 是矩阵边长，commands 是移动命令，返回蛇最终位置的一维编号
+        int x = 0, y = 0;  // // x 是行号、y 是列号，蛇从左上角 (0,0) 出发
+        for (const auto& c : commands) {  // // 逐条处理移动命令
+            switch (c[0]) {  // // 只看命令字符串的首字母即可判断方向
+            case 'U': x--; break;  // // 上移：行号减一，然后跳出 switch
+            case 'D': x++; break;  // // 下移：行号加一，然后跳出 switch
+            case 'L': y--; break;  // // 左移：列号减一，然后跳出 switch
+            case 'R': y++; break;  // // 右移：列号加一，然后跳出 switch
+            }  // // switch 结束
+        }  // // 命令遍历结束
+        return x * n + y;  // // 按题目约定把二维坐标换算成一维编号 row * n + col
+    }  // // 方法结束
+};  // // 类结束
